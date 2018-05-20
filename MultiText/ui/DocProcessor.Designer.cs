@@ -359,7 +359,7 @@ namespace MultiText
             // 
             this.linewrapMenuItem.Image = global::MultiText.Properties.Resources.linewrap;
             this.linewrapMenuItem.Name = "linewrapMenuItem";
-            this.linewrapMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.linewrapMenuItem.Size = new System.Drawing.Size(252, 30);
             this.linewrapMenuItem.Text = "自动换行(&W)";
             this.linewrapMenuItem.Click += new System.EventHandler(this.linewrapMenuItem_Click);
             // 
@@ -367,7 +367,7 @@ namespace MultiText
             // 
             this.fontsizeMenuItem.Image = global::MultiText.Properties.Resources.fontsize;
             this.fontsizeMenuItem.Name = "fontsizeMenuItem";
-            this.fontsizeMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.fontsizeMenuItem.Size = new System.Drawing.Size(252, 30);
             this.fontsizeMenuItem.Text = "字体大小(&F)";
             this.fontsizeMenuItem.Click += new System.EventHandler(this.fontsizeMenuItem_Click);
             // 
@@ -375,7 +375,7 @@ namespace MultiText
             // 
             this.fontcolorMenuItem.Image = global::MultiText.Properties.Resources.fontcolor;
             this.fontcolorMenuItem.Name = "fontcolorMenuItem";
-            this.fontcolorMenuItem.Size = new System.Drawing.Size(194, 30);
+            this.fontcolorMenuItem.Size = new System.Drawing.Size(252, 30);
             this.fontcolorMenuItem.Text = "字体颜色(&C)";
             this.fontcolorMenuItem.Click += new System.EventHandler(this.fontcolorMenuItem_Click);
             // 
@@ -442,7 +442,6 @@ namespace MultiText
             this.toolStrip.Size = new System.Drawing.Size(1176, 31);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "工具栏";
-            this.toolStrip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_KeyDown);
             // 
             // newButton
             // 
@@ -585,10 +584,11 @@ namespace MultiText
             // 
             this.richTextBoxTemplate.Location = new System.Drawing.Point(0, 0);
             this.richTextBoxTemplate.Name = "richTextBoxTemplate";
+            this.richTextBoxTemplate.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedBoth;
             this.richTextBoxTemplate.Size = new System.Drawing.Size(1168, 591);
             this.richTextBoxTemplate.TabIndex = 0;
             this.richTextBoxTemplate.Text = "";
-            this.richTextBoxTemplate.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.richTextBoxTemplate.WordWrap = false;
             // 
             // DocumentProcessor
             // 

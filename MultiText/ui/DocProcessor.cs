@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
 
 namespace MultiText
@@ -27,35 +28,21 @@ namespace MultiText
         {
             InitializeComponent();
             this.tabControlWithCloseButton.TabPages.Remove(tabPageTemplate);
+
             // 获取标题栏高度
             int formTitleHeight = Height - ClientRectangle.Height + 1;
             // 调整tabControl的大小
+            // formMargin是从窗体试验出来的一个值的一半（我想象成窗体有一个厚度）。
+            // 没有具体含义，我也不知道什么意思
             tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin,
                 this.Height - tabControlWithCloseButton.Location.Y -
-                tabControlWithCloseButton.ItemSize.Height - formMargin);
-            richTextBoxTemplate.Size = tabPageTemplate.Size;        // 窗体标题栏高度
-                                                                    //tabControlWithCloseButton.Controls.Add(tabPageTemplate);
-
-        }
-
-        private void toolStripSeparator5_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripTextBox1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void toolStripMenuItem2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void DocumentProcessor_KeyDown(object sender, KeyEventArgs e)
-        {
-
+                tabControlWithCloseButton.ItemSize.Height);
+            // 修改模板Size，是为了方便新增RichTextBox
+            richTextBoxTemplate.Size = new Size()
+            {
+                Width = tabControlWithCloseButton.Size.Width,
+                Height = tabControlWithCloseButton.Size.Height - 5 * formMargin,
+            };
         }
 
         // 新建文件菜单按钮
@@ -64,10 +51,11 @@ namespace MultiText
             TabPage newTabPage = new TabPage();
             RichTextBox newRichTextBox = new RichTextBox();
 
-            // newTabPage
+            // 添加选项卡，并设置为当前选中的选项卡
             tabControlWithCloseButton.Controls.Add(newTabPage);
+            tabControlWithCloseButton.SelectedTab = newTabPage;
             // 
-            // tabPageTemplate
+            // newTabPage
             // 
             newTabPage.Controls.Add(newRichTextBox);
             newTabPage.Location = tabPageTemplate.Location;
@@ -83,6 +71,8 @@ namespace MultiText
             newRichTextBox.Location = richTextBoxTemplate.Location;
             newRichTextBox.Name = "newRichTextBox" + count;
             newRichTextBox.Size = richTextBoxTemplate.Size;
+            newRichTextBox.ScrollBars = richTextBoxTemplate.ScrollBars;
+            newRichTextBox.WordWrap = richTextBoxTemplate.WordWrap;
             newRichTextBox.TabIndex = count;
 
 
@@ -92,19 +82,75 @@ namespace MultiText
         // 打开文件菜单按钮
         private void openMenuItem_Click(object sender, EventArgs e)
         {
-            
+            // 打开文件对话框
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "(*.txt)|*.txt";
+
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 新建标签页
+                newMenuItem_Click(sender, e);
+
+                // 获取当前选项卡
+                TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curTabPage.Text = Path.GetFileName(openFileDialog.FileName);
+                curRichTextBox.Text = File.ReadAllText(openFileDialog.FileName, Encoding.Default);
+            }
         }
 
         // 保存文件菜单按钮
         private void saveMenuItem_Click(object sender, EventArgs e)
         {
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                if (curRichTextBox.Text != "")
+                {
+                    if (curTabPage.Text.Substring(0, 4) == "新建文件")
+                    {
+                        // 打开保存文件对话框
+                        SaveFileDialog saveFileDialog = new SaveFileDialog();
+                        saveFileDialog.Filter = "(*.txt)|*.txt";
 
+                        if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                        {
+                            curTabPage.Text = Path.GetFileName(saveFileDialog.FileName);
+                            curRichTextBox.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
+                        }
+                    }
+                    else
+                    {
+                        // 保存文件
+
+                    }
+                }
+            }
         }
 
         // 保存文件为菜单按钮
         private void saveAsMenuItem_Click(object sender, EventArgs e)
         {
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
 
+                // 打开保存文件对话框
+                SaveFileDialog saveFileDialog = new SaveFileDialog
+                {
+                    Filter = "(*.txt)|*.txt"
+                };
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    curTabPage.Text = Path.GetFileName(saveFileDialog.FileName);
+                    curRichTextBox.SaveFile(saveFileDialog.FileName, RichTextBoxStreamType.PlainText);
+                }
+            }
         }
 
         // 历史记录菜单按钮
@@ -131,39 +177,58 @@ namespace MultiText
 
         }
 
+        // 退出菜单按钮
         private void exitMenuItem_Click(object sender, EventArgs e)
         {
-
+            this.Dispose();
         }
 
-        // 退出菜单按钮
+        // 撤销菜单按钮
         private void undoMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+            curRichTextBox.Undo();
         }
 
         // 剪接菜单按钮
         private void cutMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+            curRichTextBox.Cut();
         }
 
         // 复制菜单按钮
         private void copyMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+            curRichTextBox.Copy();
         }
 
         // 粘贴菜单按钮
         private void pasteMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+            curRichTextBox.Paste();
         }
 
         // 删除菜单按钮
         private void deleteMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+            if (curRichTextBox.SelectedText.Length > 0)
+            {
+                curRichTextBox.SelectedText = "";
+            }
         }
 
         // 查找菜单按钮
@@ -181,7 +246,10 @@ namespace MultiText
         // 全选菜单按钮
         private void allMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+            curRichTextBox.SelectAll();
         }
 
         // 时间/日期菜单按钮
@@ -193,7 +261,10 @@ namespace MultiText
         // 自动换行菜单按钮
         private void linewrapMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = this.tabControlWithCloseButton.SelectedTab;
+            RichTextBox curRichTextBox = (RichTextBox)curTabPage.Controls[0];
+            curRichTextBox.WordWrap = !curRichTextBox.WordWrap;
         }
 
         // 字体大小菜单按钮
@@ -235,33 +306,34 @@ namespace MultiText
         // 打开文件快捷键按钮
         private void openButton_Click(object sender, EventArgs e)
         {
-
+            openMenuItem_Click(sender, e);
         }
 
         // 保存文件快捷键按钮
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            saveMenuItem_Click(sender, e);
         }
 
         // 复制快捷键按钮
         private void copyButton_Click(object sender, EventArgs e)
         {
-
+            copyMenuItem_Click(sender, e);
         }
 
         // 粘贴快捷键按钮
         private void pasteButton_Click(object sender, EventArgs e)
         {
-
+            pasteMenuItem_Click(sender, e);
         }
 
         // 剪接快捷键按钮
         private void cutButton_Click(object sender, EventArgs e)
         {
-
+            cutMenuItem_Click(sender, e);
         }
 
+        // 快捷键事件
         private void menuStrip_KeyDown(object sender, KeyEventArgs e)
         {
             // 新建文件
@@ -273,13 +345,13 @@ namespace MultiText
             // 保存
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.S)
             {
-
+                saveMenuItem_Click(sender, e);
             }
 
             // 打开文件
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.O)
             {
-
+                openMenuItem_Click(sender, e);
             }
 
             // 打印
@@ -344,45 +416,6 @@ namespace MultiText
             }
         }
 
-        private void toolStrip_KeyDown(object sender, KeyEventArgs e)
-        {
-            // 新建文件
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.N)
-            {
-                newMenuItem_Click(sender, e);
-            }
-
-            // 保存
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.S)
-            {
-
-            }
-
-            // 打开文件
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.O)
-            {
-
-            }
-
-            // 剪接
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.X)
-            {
-
-            }
-
-            // 复制
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.C)
-            {
-
-            }
-
-            // 粘贴
-            if (ModifierKeys == Keys.Control && e.KeyCode == Keys.V)
-            {
-
-            }
-        }
-
         // 文档修改
         private void DocumentProcessor_SizeChanged(object sender, EventArgs e)
         {
@@ -393,20 +426,19 @@ namespace MultiText
             // 没有具体含义，我也不知道什么意思
             tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin,
                 this.Height - tabControlWithCloseButton.Location.Y -
-                tabControlWithCloseButton.ItemSize.Height - 2 * formMargin);
+                tabControlWithCloseButton.ItemSize.Height);
             // 修改模板Size，是为了方便新增RichTextBox
-            richTextBoxTemplate.Size = tabControlWithCloseButton.Size;
+            richTextBoxTemplate.Size = new Size()
+            {
+                Width = tabControlWithCloseButton.Size.Width,
+                Height = tabControlWithCloseButton.Size.Height - 5 * formMargin,
+            };
 
             // 调整每一个文本编辑器大小
             foreach (TabPage tabPage in tabControlWithCloseButton.TabPages)
             {
-                ((RichTextBox)tabPage.Controls[0]).Size = tabControlWithCloseButton.Size;
+                ((RichTextBox)tabPage.Controls[0]).Size = richTextBoxTemplate.Size;
             }
-        }
-
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

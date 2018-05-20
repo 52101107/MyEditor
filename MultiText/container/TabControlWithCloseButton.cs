@@ -270,7 +270,7 @@ namespace MultiText.container
             if (DisplayMode == TabDisplayMode.Image || e.Button != MouseButtons.Left)
                 return;
 
-            Rectangle selectedRect = GetTabRect(SelectedIndex); // 获取选中的选项卡
+            Rectangle selectedRect = GetTabRect(this.SelectedIndex); // 获取选中的选项卡
             Rectangle closeButtonRect = new Rectangle();        // 关闭按钮边框
 
             // 计算关闭按钮位置

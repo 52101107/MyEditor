@@ -45,6 +45,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="container\TabControlWithCloseButton.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="ui\DocProcessor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,8 +155,6 @@
   <ItemGroup>
     <None Include="image\undo.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="container\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

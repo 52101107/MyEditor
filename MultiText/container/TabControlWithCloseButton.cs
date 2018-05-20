@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace test
+namespace MultiText.container
 {
     public class TabControlWithCloseButton : TabControl
     {
@@ -160,7 +160,7 @@ namespace test
                         text = TabPages[e.Index].Text.Substring(0,
                             (currentTabRect.Width - ImagePadding.X -
                             imageRect.Width - TextPadding.X) / 12 - 1)
-                            + "~";
+                            + "…";
                     }
                     e.Graphics.DrawString(text, Font,
                         new SolidBrush(TabPages[e.Index].ForeColor),
@@ -190,7 +190,7 @@ namespace test
                         text = TabPages[e.Index].Text.Substring(0,
                             (currentTabRect.Width - ImagePadding.X -
                             imageRect.Width - TextPadding.X) / 12 - 1)
-                            + "~";
+                            + "…";
                     }
                     e.Graphics.DrawString(text, Font,
                         new SolidBrush(TabPages[e.Index].ForeColor),
@@ -246,7 +246,7 @@ namespace test
                             (currentTabRect.Width - ImagePadding.X -
                             imageRect.Width - TextPadding.X -
                             closeButtonRect.Width - CloseButtonPadding.X) / 12 - 1)
-                            + "~";
+                            + "…";
                     }
                     e.Graphics.DrawString(text, Font,
                         new SolidBrush(TabPages[e.Index].ForeColor),

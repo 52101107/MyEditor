@@ -74,18 +74,25 @@ namespace MultiText
             this.copyButton = new System.Windows.Forms.ToolStripButton();
             this.pasteButton = new System.Windows.Forms.ToolStripButton();
             this.cutButton = new System.Windows.Forms.ToolStripButton();
-            this.tabControl = new System.Windows.Forms.TabControl();
-            this.tabPage = new System.Windows.Forms.TabPage();
-            this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.richTextBox = new System.Windows.Forms.RichTextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabControlWithCloseButton1 = new MultiText.container.TabControlWithCloseButton();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tabPage4 = new System.Windows.Forms.TabPage();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
-            this.tabControl.SuspendLayout();
-            this.tabPage.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.tabControlWithCloseButton1.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
             // 
+            this.menuStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileMenuItem,
             this.editMenuItem,
@@ -94,7 +101,8 @@ namespace MultiText
             this.helpMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(784, 25);
+            this.menuStrip.Padding = new System.Windows.Forms.Padding(9, 3, 0, 3);
+            this.menuStrip.Size = new System.Drawing.Size(1176, 34);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "菜单栏";
             this.menuStrip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.menuStrip_KeyDown);
@@ -116,7 +124,7 @@ namespace MultiText
             this.exitMenuItem});
             this.fileMenuItem.Name = "fileMenuItem";
             this.fileMenuItem.ShortcutKeyDisplayString = "Ctrl + N";
-            this.fileMenuItem.Size = new System.Drawing.Size(58, 21);
+            this.fileMenuItem.Size = new System.Drawing.Size(80, 28);
             this.fileMenuItem.Text = "文件(&F)";
             // 
             // newMenuItem
@@ -125,7 +133,7 @@ namespace MultiText
             this.newMenuItem.Name = "newMenuItem";
             this.newMenuItem.ShortcutKeyDisplayString = "Ctrl+N";
             this.newMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.newMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.newMenuItem.Size = new System.Drawing.Size(224, 30);
             this.newMenuItem.Text = "新建(&N)";
             this.newMenuItem.Click += new System.EventHandler(this.newMenuItem_Click);
             // 
@@ -135,7 +143,7 @@ namespace MultiText
             this.openMenuItem.Name = "openMenuItem";
             this.openMenuItem.ShortcutKeyDisplayString = "Ctrl+O";
             this.openMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.openMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.openMenuItem.Size = new System.Drawing.Size(224, 30);
             this.openMenuItem.Text = "打开(&O)";
             this.openMenuItem.Click += new System.EventHandler(this.openMenuItem_Click);
             // 
@@ -145,7 +153,7 @@ namespace MultiText
             this.saveMenuItem.Name = "saveMenuItem";
             this.saveMenuItem.ShortcutKeyDisplayString = "Ctrl+S";
             this.saveMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.saveMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.saveMenuItem.Size = new System.Drawing.Size(224, 30);
             this.saveMenuItem.Text = "保存(&S)";
             this.saveMenuItem.Click += new System.EventHandler(this.saveMenuItem_Click);
             // 
@@ -153,20 +161,20 @@ namespace MultiText
             // 
             this.saveAsMenuItem.Image = global::MultiText.Properties.Resources.saveas;
             this.saveAsMenuItem.Name = "saveAsMenuItem";
-            this.saveAsMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.saveAsMenuItem.Size = new System.Drawing.Size(224, 30);
             this.saveAsMenuItem.Text = "另存为(&A)";
             this.saveAsMenuItem.Click += new System.EventHandler(this.saveAsMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(221, 6);
             // 
             // historyMenuItem
             // 
             this.historyMenuItem.Image = global::MultiText.Properties.Resources.history;
             this.historyMenuItem.Name = "historyMenuItem";
-            this.historyMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.historyMenuItem.Size = new System.Drawing.Size(224, 30);
             this.historyMenuItem.Text = "历史记录";
             this.historyMenuItem.Click += new System.EventHandler(this.historyMenuItem_Click);
             // 
@@ -174,20 +182,20 @@ namespace MultiText
             // 
             this.saveToDBMenuItem.Image = global::MultiText.Properties.Resources.database;
             this.saveToDBMenuItem.Name = "saveToDBMenuItem";
-            this.saveToDBMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.saveToDBMenuItem.Size = new System.Drawing.Size(224, 30);
             this.saveToDBMenuItem.Text = "保存到数据库";
             this.saveToDBMenuItem.Click += new System.EventHandler(this.saveToDBMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(221, 6);
             // 
             // pageSettingMenuItem
             // 
             this.pageSettingMenuItem.Image = global::MultiText.Properties.Resources.pagesetting;
             this.pageSettingMenuItem.Name = "pageSettingMenuItem";
-            this.pageSettingMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.pageSettingMenuItem.Size = new System.Drawing.Size(224, 30);
             this.pageSettingMenuItem.Text = "页面设置(&U)";
             this.pageSettingMenuItem.Click += new System.EventHandler(this.pageSettingMenuItem_Click);
             // 
@@ -197,20 +205,20 @@ namespace MultiText
             this.printMenuItem.Name = "printMenuItem";
             this.printMenuItem.ShortcutKeyDisplayString = "Ctrl+P";
             this.printMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
-            this.printMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.printMenuItem.Size = new System.Drawing.Size(224, 30);
             this.printMenuItem.Text = "打印(&P)";
             this.printMenuItem.Click += new System.EventHandler(this.printMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(162, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(221, 6);
             // 
             // exitMenuItem
             // 
             this.exitMenuItem.Image = global::MultiText.Properties.Resources.exit;
             this.exitMenuItem.Name = "exitMenuItem";
-            this.exitMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.exitMenuItem.Size = new System.Drawing.Size(224, 30);
             this.exitMenuItem.Text = "退出(&X)";
             this.exitMenuItem.Click += new System.EventHandler(this.exitMenuItem_Click);
             // 
@@ -230,7 +238,7 @@ namespace MultiText
             this.allMenuItem,
             this.dateMenuItem});
             this.editMenuItem.Name = "editMenuItem";
-            this.editMenuItem.Size = new System.Drawing.Size(59, 21);
+            this.editMenuItem.Size = new System.Drawing.Size(80, 28);
             this.editMenuItem.Text = "编辑(&E)";
             // 
             // undoMenuItem
@@ -239,14 +247,14 @@ namespace MultiText
             this.undoMenuItem.Name = "undoMenuItem";
             this.undoMenuItem.ShortcutKeyDisplayString = "Ctrl+Z";
             this.undoMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Z)));
-            this.undoMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.undoMenuItem.Size = new System.Drawing.Size(229, 30);
             this.undoMenuItem.Text = "撤销(&U)";
             this.undoMenuItem.Click += new System.EventHandler(this.undoMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(226, 6);
             // 
             // cutMenuItem
             // 
@@ -254,7 +262,7 @@ namespace MultiText
             this.cutMenuItem.Name = "cutMenuItem";
             this.cutMenuItem.ShortcutKeyDisplayString = "Ctrl+X";
             this.cutMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.X)));
-            this.cutMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.cutMenuItem.Size = new System.Drawing.Size(229, 30);
             this.cutMenuItem.Text = "剪接(&T)";
             this.cutMenuItem.Click += new System.EventHandler(this.cutMenuItem_Click);
             // 
@@ -264,7 +272,7 @@ namespace MultiText
             this.copyMenuItem.Name = "copyMenuItem";
             this.copyMenuItem.ShortcutKeyDisplayString = "Ctrl+C";
             this.copyMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.copyMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.copyMenuItem.Size = new System.Drawing.Size(229, 30);
             this.copyMenuItem.Text = "复制(&C)";
             this.copyMenuItem.Click += new System.EventHandler(this.copyMenuItem_Click);
             // 
@@ -274,7 +282,7 @@ namespace MultiText
             this.pasteMenuItem.Name = "pasteMenuItem";
             this.pasteMenuItem.ShortcutKeyDisplayString = "Ctrl+V";
             this.pasteMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.V)));
-            this.pasteMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.pasteMenuItem.Size = new System.Drawing.Size(229, 30);
             this.pasteMenuItem.Text = "粘贴(&P)";
             this.pasteMenuItem.Click += new System.EventHandler(this.pasteMenuItem_Click);
             // 
@@ -284,14 +292,14 @@ namespace MultiText
             this.deleteMenuItem.Name = "deleteMenuItem";
             this.deleteMenuItem.ShortcutKeyDisplayString = "Delete";
             this.deleteMenuItem.ShortcutKeys = System.Windows.Forms.Keys.Delete;
-            this.deleteMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.deleteMenuItem.Size = new System.Drawing.Size(229, 30);
             this.deleteMenuItem.Text = "删除(&L)";
             this.deleteMenuItem.Click += new System.EventHandler(this.deleteMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(226, 6);
             // 
             // searchMenuItem
             // 
@@ -299,7 +307,7 @@ namespace MultiText
             this.searchMenuItem.Name = "searchMenuItem";
             this.searchMenuItem.ShortcutKeyDisplayString = "Ctrl+F";
             this.searchMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.searchMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.searchMenuItem.Size = new System.Drawing.Size(229, 30);
             this.searchMenuItem.Text = "查找(&F)";
             this.searchMenuItem.Click += new System.EventHandler(this.searchMenuItem_Click);
             // 
@@ -309,14 +317,14 @@ namespace MultiText
             this.replaceMenuItem.Name = "replaceMenuItem";
             this.replaceMenuItem.ShortcutKeyDisplayString = "Ctrl+H";
             this.replaceMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.H)));
-            this.replaceMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.replaceMenuItem.Size = new System.Drawing.Size(229, 30);
             this.replaceMenuItem.Text = "替换(&R)";
             this.replaceMenuItem.Click += new System.EventHandler(this.replaceMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(164, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(226, 6);
             // 
             // allMenuItem
             // 
@@ -324,7 +332,7 @@ namespace MultiText
             this.allMenuItem.Name = "allMenuItem";
             this.allMenuItem.ShortcutKeyDisplayString = "Ctrl+A";
             this.allMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.A)));
-            this.allMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.allMenuItem.Size = new System.Drawing.Size(229, 30);
             this.allMenuItem.Text = "全选(&A)";
             this.allMenuItem.Click += new System.EventHandler(this.allMenuItem_Click);
             // 
@@ -334,7 +342,7 @@ namespace MultiText
             this.dateMenuItem.Name = "dateMenuItem";
             this.dateMenuItem.ShortcutKeyDisplayString = "F5";
             this.dateMenuItem.ShortcutKeys = System.Windows.Forms.Keys.F5;
-            this.dateMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.dateMenuItem.Size = new System.Drawing.Size(229, 30);
             this.dateMenuItem.Text = "时间/日期(&D)";
             this.dateMenuItem.Click += new System.EventHandler(this.dateMenuItem_Click);
             // 
@@ -345,14 +353,14 @@ namespace MultiText
             this.fontsizeMenuItem,
             this.fontcolorMenuItem});
             this.formatMenuItem.Name = "formatMenuItem";
-            this.formatMenuItem.Size = new System.Drawing.Size(62, 21);
+            this.formatMenuItem.Size = new System.Drawing.Size(85, 28);
             this.formatMenuItem.Text = "格式(&O)";
             // 
             // linewrapMenuItem
             // 
             this.linewrapMenuItem.Image = global::MultiText.Properties.Resources.linewrap;
             this.linewrapMenuItem.Name = "linewrapMenuItem";
-            this.linewrapMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.linewrapMenuItem.Size = new System.Drawing.Size(194, 30);
             this.linewrapMenuItem.Text = "自动换行(&W)";
             this.linewrapMenuItem.Click += new System.EventHandler(this.linewrapMenuItem_Click);
             // 
@@ -360,7 +368,7 @@ namespace MultiText
             // 
             this.fontsizeMenuItem.Image = global::MultiText.Properties.Resources.fontsize;
             this.fontsizeMenuItem.Name = "fontsizeMenuItem";
-            this.fontsizeMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.fontsizeMenuItem.Size = new System.Drawing.Size(194, 30);
             this.fontsizeMenuItem.Text = "字体大小(&F)";
             this.fontsizeMenuItem.Click += new System.EventHandler(this.fontsizeMenuItem_Click);
             // 
@@ -368,7 +376,7 @@ namespace MultiText
             // 
             this.fontcolorMenuItem.Image = global::MultiText.Properties.Resources.fontcolor;
             this.fontcolorMenuItem.Name = "fontcolorMenuItem";
-            this.fontcolorMenuItem.Size = new System.Drawing.Size(144, 22);
+            this.fontcolorMenuItem.Size = new System.Drawing.Size(194, 30);
             this.fontcolorMenuItem.Text = "字体颜色(&C)";
             this.fontcolorMenuItem.Click += new System.EventHandler(this.fontcolorMenuItem_Click);
             // 
@@ -377,14 +385,14 @@ namespace MultiText
             this.viewMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusMenuItem});
             this.viewMenuItem.Name = "viewMenuItem";
-            this.viewMenuItem.Size = new System.Drawing.Size(60, 21);
+            this.viewMenuItem.Size = new System.Drawing.Size(82, 28);
             this.viewMenuItem.Text = "查看(&V)";
             // 
             // statusMenuItem
             // 
             this.statusMenuItem.Image = global::MultiText.Properties.Resources.status;
             this.statusMenuItem.Name = "statusMenuItem";
-            this.statusMenuItem.Size = new System.Drawing.Size(127, 22);
+            this.statusMenuItem.Size = new System.Drawing.Size(168, 30);
             this.statusMenuItem.Text = "状态栏(&S)";
             this.statusMenuItem.Click += new System.EventHandler(this.statusMenuItem_Click);
             // 
@@ -395,32 +403,33 @@ namespace MultiText
             this.toolStripSeparator7,
             this.aboutMenuItem});
             this.helpMenuItem.Name = "helpMenuItem";
-            this.helpMenuItem.Size = new System.Drawing.Size(61, 21);
+            this.helpMenuItem.Size = new System.Drawing.Size(84, 28);
             this.helpMenuItem.Text = "帮助(&H)";
             // 
             // lookhelpMenuItem
             // 
             this.lookhelpMenuItem.Image = global::MultiText.Properties.Resources.help;
             this.lookhelpMenuItem.Name = "lookhelpMenuItem";
-            this.lookhelpMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.lookhelpMenuItem.Size = new System.Drawing.Size(190, 30);
             this.lookhelpMenuItem.Text = "查看帮助(&H)";
             this.lookhelpMenuItem.Click += new System.EventHandler(this.lookhelpMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(138, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(187, 6);
             // 
             // aboutMenuItem
             // 
             this.aboutMenuItem.Image = global::MultiText.Properties.Resources.about;
             this.aboutMenuItem.Name = "aboutMenuItem";
-            this.aboutMenuItem.Size = new System.Drawing.Size(141, 22);
+            this.aboutMenuItem.Size = new System.Drawing.Size(190, 30);
             this.aboutMenuItem.Text = "关于(&A)";
             this.aboutMenuItem.Click += new System.EventHandler(this.aboutMenuItem_Click);
             // 
             // toolStrip
             // 
+            this.toolStrip.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.newButton,
             this.openButton,
@@ -428,9 +437,10 @@ namespace MultiText
             this.copyButton,
             this.pasteButton,
             this.cutButton});
-            this.toolStrip.Location = new System.Drawing.Point(0, 25);
+            this.toolStrip.Location = new System.Drawing.Point(0, 34);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(784, 25);
+            this.toolStrip.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStrip.Size = new System.Drawing.Size(1176, 31);
             this.toolStrip.TabIndex = 1;
             this.toolStrip.Text = "工具栏";
             this.toolStrip.KeyDown += new System.Windows.Forms.KeyEventHandler(this.toolStrip_KeyDown);
@@ -441,7 +451,7 @@ namespace MultiText
             this.newButton.Image = global::MultiText.Properties.Resources._new;
             this.newButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.newButton.Name = "newButton";
-            this.newButton.Size = new System.Drawing.Size(23, 22);
+            this.newButton.Size = new System.Drawing.Size(28, 28);
             this.newButton.Text = "新建";
             this.newButton.Click += new System.EventHandler(this.newButton_Click);
             // 
@@ -451,7 +461,7 @@ namespace MultiText
             this.openButton.Image = global::MultiText.Properties.Resources.open;
             this.openButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.openButton.Name = "openButton";
-            this.openButton.Size = new System.Drawing.Size(23, 22);
+            this.openButton.Size = new System.Drawing.Size(28, 28);
             this.openButton.Text = "打开";
             this.openButton.Click += new System.EventHandler(this.openButton_Click);
             // 
@@ -461,7 +471,7 @@ namespace MultiText
             this.saveButton.Image = global::MultiText.Properties.Resources.save;
             this.saveButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.saveButton.Name = "saveButton";
-            this.saveButton.Size = new System.Drawing.Size(23, 22);
+            this.saveButton.Size = new System.Drawing.Size(28, 28);
             this.saveButton.Text = "保存";
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
@@ -471,7 +481,7 @@ namespace MultiText
             this.copyButton.Image = global::MultiText.Properties.Resources.copy;
             this.copyButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.copyButton.Name = "copyButton";
-            this.copyButton.Size = new System.Drawing.Size(23, 22);
+            this.copyButton.Size = new System.Drawing.Size(28, 28);
             this.copyButton.Text = "复制";
             this.copyButton.Click += new System.EventHandler(this.copyButton_Click);
             // 
@@ -481,7 +491,7 @@ namespace MultiText
             this.pasteButton.Image = global::MultiText.Properties.Resources.paste;
             this.pasteButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.pasteButton.Name = "pasteButton";
-            this.pasteButton.Size = new System.Drawing.Size(23, 22);
+            this.pasteButton.Size = new System.Drawing.Size(28, 28);
             this.pasteButton.Text = "粘贴";
             this.pasteButton.Click += new System.EventHandler(this.pasteButton_Click);
             // 
@@ -491,62 +501,106 @@ namespace MultiText
             this.cutButton.Image = global::MultiText.Properties.Resources.cut;
             this.cutButton.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.cutButton.Name = "cutButton";
-            this.cutButton.Size = new System.Drawing.Size(23, 22);
+            this.cutButton.Size = new System.Drawing.Size(28, 28);
             this.cutButton.Text = "剪接";
             this.cutButton.Click += new System.EventHandler(this.cutButton_Click);
             // 
-            // tabControl
+            // tabPage1
             // 
-            this.tabControl.Controls.Add(this.tabPage);
-            this.tabControl.Controls.Add(this.tabPage1);
-            this.tabControl.HotTrack = true;
-            this.tabControl.ItemSize = new System.Drawing.Size(100, 20);
-            this.tabControl.Location = new System.Drawing.Point(0, 50);
-            this.tabControl.Name = "tabControl";
-            this.tabControl.Padding = new System.Drawing.Point(0, 3);
-            this.tabControl.SelectedIndex = 0;
-            this.tabControl.Size = new System.Drawing.Size(784, 413);
-            this.tabControl.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControl.TabIndex = 2;
-            // 
-            // tabPage
-            // 
-            this.tabPage.Controls.Add(this.richTextBox);
-            this.tabPage.Location = new System.Drawing.Point(4, 24);
-            this.tabPage.Name = "tabPage";
-            this.tabPage.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage.Size = new System.Drawing.Size(776, 385);
-            this.tabPage.TabIndex = 2;
-            this.tabPage.Text = "示例";
-            this.tabPage.UseVisualStyleBackColor = true;
+            this.tabPage1.Controls.Add(this.richTextBox);
+            this.tabPage1.Location = new System.Drawing.Point(4, 28);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(1168, 592);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "新建文件1";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // richTextBox
             // 
             this.richTextBox.Location = new System.Drawing.Point(0, 0);
             this.richTextBox.Name = "richTextBox";
-            this.richTextBox.Size = new System.Drawing.Size(776, 385);
+            this.richTextBox.Size = new System.Drawing.Size(1165, 589);
             this.richTextBox.TabIndex = 0;
             this.richTextBox.Text = "";
             // 
-            // tabPage1
+            // tabPage2
             // 
-            this.tabPage1.Location = new System.Drawing.Point(4, 24);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(776, 385);
-            this.tabPage1.TabIndex = 3;
-            this.tabPage1.Text = "tabPage1";
-            this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage2.Location = new System.Drawing.Point(4, 28);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(1168, 592);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "新建文件2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // tabControlWithCloseButton1
+            // 
+            this.tabControlWithCloseButton1.CloseButtonPadding = new System.Drawing.Point(0, 0);
+            this.tabControlWithCloseButton1.Controls.Add(this.tabPage3);
+            this.tabControlWithCloseButton1.Controls.Add(this.tabPage4);
+            this.tabControlWithCloseButton1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControlWithCloseButton1.ImagePadding = new System.Drawing.Point(0, 0);
+            this.tabControlWithCloseButton1.ItemSize = new System.Drawing.Size(150, 24);
+            this.tabControlWithCloseButton1.Location = new System.Drawing.Point(0, 80);
+            this.tabControlWithCloseButton1.Name = "tabControlWithCloseButton1";
+            this.tabControlWithCloseButton1.SelectedIndex = 0;
+            this.tabControlWithCloseButton1.SelectedTabColor = System.Drawing.Color.Empty;
+            this.tabControlWithCloseButton1.Size = new System.Drawing.Size(1176, 625);
+            this.tabControlWithCloseButton1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControlWithCloseButton1.TabImage = null;
+            this.tabControlWithCloseButton1.TabIndex = 2;
+            this.tabControlWithCloseButton1.TextPadding = new System.Drawing.Point(4, 4);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.richTextBox1);
+            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(1168, 593);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "新建文件1.txt";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(1168, 591);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
+            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Controls.Add(this.richTextBox2);
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(1168, 593);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "新建文件2.txt";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(1168, 589);
+            this.richTextBox2.TabIndex = 0;
+            this.richTextBox2.Text = "";
             // 
             // DocumentProcessor
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.tabControl);
+            this.ClientSize = new System.Drawing.Size(1176, 692);
+            this.Controls.Add(this.tabControlWithCloseButton1);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DocumentProcessor";
             this.Text = "DocumentProcessor";
             this.SizeChanged += new System.EventHandler(this.DocumentProcessor_SizeChanged);
@@ -554,8 +608,10 @@ namespace MultiText
             this.menuStrip.PerformLayout();
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
-            this.tabControl.ResumeLayout(false);
-            this.tabPage.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.tabControlWithCloseButton1.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -607,10 +663,14 @@ namespace MultiText
         private System.Windows.Forms.ToolStripButton copyButton;
         private System.Windows.Forms.ToolStripButton pasteButton;
         private System.Windows.Forms.ToolStripButton cutButton;
-        private System.Windows.Forms.TabControl tabControl;
-        private System.Windows.Forms.TabPage tabPage;
-        private System.Windows.Forms.RichTextBox richTextBox;
         private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.RichTextBox richTextBox;
+        private container.TabControlWithCloseButton tabControlWithCloseButton1;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

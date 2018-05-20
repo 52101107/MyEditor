@@ -8,12 +8,11 @@ namespace MultiText
     {
         #region Component Size Variable
 
-        private const int formMargin = 8;
-
-        private const int tabPageLocationY = 50;
-        private const int tabPageLocationX = 0;
-        private const int tagItemHeight = 20;
-        private const int tagMargin = 3;
+        private const int formMargin = 8;                   // 窗体空白
+        private const int tabControlWithCloseButtonY = 70;  // tabControlWithCloseButton的Y坐标
+        private const int tabPageLocationY = 70;            // tabControlWithCloseButton的Y坐标
+        private const int tagItemHeight = 20;               // 选项卡Item高度
+        private const int tagMargin = 3;                    // 选项卡空白
 
         #endregion
 
@@ -27,9 +26,7 @@ namespace MultiText
         {
             InitializeComponent();
 
-            int formTitleHeight = Height - ClientRectangle.Height + 1;
-            tabControl.Size = new Size(Width - tabPageLocationX - 2 * formMargin, Height - tabPageLocationY - formTitleHeight);
-            richTextBox.Size = tabPage.Size;
+            int formTitleHeight = this.Height - ClientRectangle.Height + 1;         // 窗体标题栏高度
         }
 
         private void toolStripSeparator5_Click(object sender, EventArgs e)
@@ -356,8 +353,14 @@ namespace MultiText
         private void DocumentProcessor_SizeChanged(object sender, EventArgs e)
         {
             int formTitleHeight = Height - ClientRectangle.Height + 1;
-            tabControl.Size = new Size(Width - tabPageLocationX - 2 * formMargin, Height - tabPageLocationY - formTitleHeight);
-            richTextBox.Size = tabPage.Size;
+            tabPage3.Size = new Size(this.Height - tabControlWithCloseButton1.Location.Y
+                - tabControlWithCloseButton1.ItemSize.Height, this.Width - 2 * formMargin);
+            richTextBox1.Size = tabPage3.Size;
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

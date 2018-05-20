@@ -102,22 +102,22 @@ namespace test
         private void DrawItemWithExitButton(object sender, DrawItemEventArgs e)
         {
             Rectangle closeButtonRect = new Rectangle();        // 关闭按钮边框
-            Rectangle selectedRect = GetTabRect(e.Index); // 获取当前选项卡的边框
+            Rectangle currentTabRect = GetTabRect(e.Index);     // 获取当前选项卡的边框
             Rectangle imageRect = new Rectangle();              // 图标边框
 
             // 计算关闭按钮大小
-            closeButtonRect.Height = selectedRect.Height - 2 * CloseButtonPadding.Y;
+            closeButtonRect.Height = currentTabRect.Height - 2 * CloseButtonPadding.Y;
             closeButtonRect.Width = closeButtonRect.Height;
 
             // 计算图标大小
-            imageRect.Height = selectedRect.Height - 2 * ImagePadding.Y;
+            imageRect.Height = currentTabRect.Height - 2 * ImagePadding.Y;
             imageRect.Width = imageRect.Height;
 
             // 绘制选项卡
             // 绘制选项卡背景色
             if (e.Index == this.SelectedIndex)
             {
-                e.Graphics.FillRectangle(new SolidBrush(SelectedTabColor), selectedRect);
+                e.Graphics.FillRectangle(new SolidBrush(SelectedTabColor), currentTabRect);
             }
 
             string text = TabPages[e.Index].Text;
@@ -128,9 +128,9 @@ namespace test
 
                     // 绘制关闭按钮
                     // 计算close的Rectangle位置
-                    closeButtonRect.X = selectedRect.X + selectedRect.Width -
+                    closeButtonRect.X = currentTabRect.X + currentTabRect.Width -
                         closeButtonRect.Width - CloseButtonPadding.X;
-                    closeButtonRect.Y = selectedRect.Y + CloseButtonPadding.Y;
+                    closeButtonRect.Y = currentTabRect.Y + CloseButtonPadding.Y;
                     // 绘制关闭按钮方框(只画X)
                     //e.Graphics.DrawRectangle(Pens.Black, closeButtonRect);
                     //绘制关闭按钮颜色,Color.FromArgb将10进制的8 位颜色值
@@ -152,20 +152,20 @@ namespace test
                         closeButtonRect.Y + 4);
 
                     // 绘制文字
-                    if ((selectedRect.Width - TextPadding.X -
-                        closeButtonRect.Width - CloseButtonPadding.X) / 20
+                    if ((currentTabRect.Width - TextPadding.X -
+                        closeButtonRect.Width - CloseButtonPadding.X) / 12
                         < TabPages[e.Index].Text.Length)
                     {
                         // 选项卡长度可容纳字数小于Text长度
                         text = TabPages[e.Index].Text.Substring(0,
-                            (selectedRect.Width - ImagePadding.X -
-                            imageRect.Width - TextPadding.X) / 20 - 1)
+                            (currentTabRect.Width - ImagePadding.X -
+                            imageRect.Width - TextPadding.X) / 12 - 1)
                             + "~";
                     }
                     e.Graphics.DrawString(text, Font,
                         new SolidBrush(TabPages[e.Index].ForeColor),
-                        selectedRect.X + TextPadding.X,     // 字体左边插入空白
-                        selectedRect.Y + TextPadding.Y);    // 字体上方插入空白
+                        currentTabRect.X + TextPadding.X,     // 字体左边插入空白
+                        currentTabRect.Y + TextPadding.Y);    // 字体上方插入空白
                     break;
 
                 #endregion
@@ -174,28 +174,28 @@ namespace test
 
                     // 绘制图标
                     // 计算图标的边框
-                    imageRect.Height = selectedRect.Height - 2 * ImagePadding.Y;
+                    imageRect.Height = currentTabRect.Height - 2 * ImagePadding.Y;
                     imageRect.Width = imageRect.Height;
-                    imageRect.X = selectedRect.X + ImagePadding.X;
-                    imageRect.Y = selectedRect.Y + ImagePadding.Y;
+                    imageRect.X = currentTabRect.X + ImagePadding.X;
+                    imageRect.Y = currentTabRect.Y + ImagePadding.Y;
                     if (TabImage != null)
                         e.Graphics.DrawImage(TabImage, imageRect);
 
                     // 绘制文字
-                    if ((selectedRect.Width - ImagePadding.X -
-                        imageRect.Width - TextPadding.X) / 20
+                    if ((currentTabRect.Width - ImagePadding.X -
+                        imageRect.Width - TextPadding.X) / 12
                         < TabPages[e.Index].Text.Length)
                     {
                         // 选项卡长度可容纳字数小于Text长度
                         text = TabPages[e.Index].Text.Substring(0,
-                            (selectedRect.Width - ImagePadding.X -
-                            imageRect.Width - TextPadding.X) / 20 - 1)
+                            (currentTabRect.Width - ImagePadding.X -
+                            imageRect.Width - TextPadding.X) / 12 - 1)
                             + "~";
                     }
                     e.Graphics.DrawString(text, Font,
                         new SolidBrush(TabPages[e.Index].ForeColor),
                         imageRect.X + imageRect.Width + TextPadding.X,     // 字体左边插入空白
-                        selectedRect.Y + TextPadding.Y);    // 字体上方插入空白
+                        currentTabRect.Y + TextPadding.Y);    // 字体上方插入空白
                     break;
 
                 #endregion
@@ -204,17 +204,17 @@ namespace test
 
                     // 绘制图标
                     // 计算图标的边框
-                    imageRect.Height = selectedRect.Height - 2 * ImagePadding.Y;
+                    imageRect.Height = currentTabRect.Height - 2 * ImagePadding.Y;
                     imageRect.Width = imageRect.Height;
-                    imageRect.X = selectedRect.X + ImagePadding.X;
-                    imageRect.Y = selectedRect.Y + ImagePadding.Y;
+                    imageRect.X = currentTabRect.X + ImagePadding.X;
+                    imageRect.Y = currentTabRect.Y + ImagePadding.Y;
                     if (TabImage != null)
                         e.Graphics.DrawImage(TabImage, imageRect);
 
                     // 绘制关闭按钮
                     // 计算close的边框位置
-                    closeButtonRect.X = selectedRect.X + selectedRect.Width - closeButtonRect.Width - CloseButtonPadding.X;
-                    closeButtonRect.Y = selectedRect.Y + CloseButtonPadding.Y;
+                    closeButtonRect.X = currentTabRect.X + currentTabRect.Width - closeButtonRect.Width - CloseButtonPadding.X;
+                    closeButtonRect.Y = currentTabRect.Y + CloseButtonPadding.Y;
                     // 绘制关闭按钮方框
                     //e.Graphics.DrawRectangle(Pens.Black, closeButtonRect);
                     //绘制关闭按钮颜色,Color.FromArgb将10进制的8 位颜色值
@@ -236,22 +236,22 @@ namespace test
                         closeButtonRect.Y + 4);
 
                     // 绘制文字
-                    if ((selectedRect.Width - ImagePadding.X -
+                    if ((currentTabRect.Width - ImagePadding.X -
                         imageRect.Width - TextPadding.X -
-                        closeButtonRect.Width - CloseButtonPadding.X) / 10
+                        closeButtonRect.Width - CloseButtonPadding.X) / 12
                         < TabPages[e.Index].Text.Length)
                     {
                         // 选项卡长度可容纳字数小于Text长度
                         text = TabPages[e.Index].Text.Substring(0,
-                            (selectedRect.Width - ImagePadding.X -
+                            (currentTabRect.Width - ImagePadding.X -
                             imageRect.Width - TextPadding.X -
-                            closeButtonRect.Width - CloseButtonPadding.X) / 10 - 1)
+                            closeButtonRect.Width - CloseButtonPadding.X) / 12 - 1)
                             + "~";
                     }
                     e.Graphics.DrawString(text, Font,
                         new SolidBrush(TabPages[e.Index].ForeColor),
                         imageRect.X + imageRect.Width + TextPadding.X,     // 字体左边插入空白
-                        selectedRect.Y + TextPadding.Y);    // 字体上方插入空白
+                        currentTabRect.Y + TextPadding.Y);    // 字体上方插入空白
                     break;
 
                     #endregion
@@ -266,8 +266,28 @@ namespace test
         /// <param name="e"></param>
         private void TabItemClosedByMouseDown(object sender, MouseEventArgs e)
         {
-            
+            // 图标模式或非鼠标左键点击直接退出
+            if (DisplayMode == TabDisplayMode.Image || e.Button != MouseButtons.Left)
+                return;
 
+            Rectangle selectedRect = GetTabRect(SelectedIndex); // 获取选中的选项卡
+            Rectangle closeButtonRect = new Rectangle();        // 关闭按钮边框
+
+            // 计算关闭按钮位置
+            closeButtonRect.Height = selectedRect.Height - 2 * CloseButtonPadding.Y;
+            closeButtonRect.Width = selectedRect.Height;
+            closeButtonRect.X = selectedRect.X + selectedRect.Width
+                - CloseButtonPadding.X - closeButtonRect.Width;
+            closeButtonRect.Y = selectedRect.Y + CloseButtonPadding.Y;
+
+            // 处理鼠标点击事件
+            if (e.X >= closeButtonRect.X &&
+                e.X <= closeButtonRect.X + closeButtonRect.Width &&
+                e.Y >= closeButtonRect.Y &&
+                e.Y <= closeButtonRect.Y + closeButtonRect.Height)
+            {
+                this.TabPages.RemoveAt(this.SelectedIndex);
+            }
         }
 
         #endregion

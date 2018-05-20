@@ -28,15 +28,26 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabControlWithCloseButton1 = new test.TabControlWithCloseButton();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabControlWithExit1 = new test.TabControlWithExit();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.tabControlWithCloseButton1.SuspendLayout();
             this.tabControlWithExit1.SuspendLayout();
             this.SuspendLayout();
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
+            this.tabPage4.Size = new System.Drawing.Size(673, 600);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "示例示例4";
+            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // tabControlWithCloseButton1
             // 
@@ -62,18 +73,18 @@
             // 
             this.tabPage1.Location = new System.Drawing.Point(4, 28);
             this.tabPage1.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage1.Name = "示例示例示例示例示例示例示例示例1";
+            this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage1.Size = new System.Drawing.Size(470, 598);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "示例示例示例示例示例示例1";
+            this.tabPage1.Text = "示例示例示例示例示例示例示例示例示例示例1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 28);
             this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "示例示例2";
+            this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage2.Size = new System.Drawing.Size(470, 598);
             this.tabPage2.TabIndex = 1;
@@ -84,7 +95,6 @@
             // 
             this.tabControlWithExit1.BackGroundColor = System.Drawing.Color.Gray;
             this.tabControlWithExit1.Controls.Add(this.tabPage3);
-            this.tabControlWithExit1.Controls.Add(this.tabPage4);
             this.tabControlWithExit1.ItemSize = new System.Drawing.Size(120, 24);
             this.tabControlWithExit1.Location = new System.Drawing.Point(501, 18);
             this.tabControlWithExit1.Margin = new System.Windows.Forms.Padding(4);
@@ -92,31 +102,20 @@
             this.tabControlWithExit1.SelectedIndex = 0;
             this.tabControlWithExit1.Size = new System.Drawing.Size(681, 632);
             this.tabControlWithExit1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControlWithExit1.StyleMode = test.TabControlWithExit.TabControlMode.Normal;
-            this.tabControlWithExit1.TabImage = null;
+            this.tabControlWithExit1.StyleMode = test.TabControlWithExit.TabControlMode.All;
+            this.tabControlWithExit1.TabImage = global::test.Properties.Resources.about;
             this.tabControlWithExit1.TabIndex = 1;
             // 
             // tabPage3
             // 
             this.tabPage3.Location = new System.Drawing.Point(4, 28);
             this.tabPage3.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage3.Name = "示例示例3";
+            this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(4);
             this.tabPage3.Size = new System.Drawing.Size(673, 600);
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "示例示例3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // tabPage4
-            // 
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
-            this.tabPage4.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Name = "示例示例4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage4.Size = new System.Drawing.Size(673, 600);
-            this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "示例示例4";
-            this.tabPage4.UseVisualStyleBackColor = true;
             // 
             // Test
             // 

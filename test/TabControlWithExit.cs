@@ -22,7 +22,6 @@ namespace test
             DrawItem += OverridOnDrawItem;
             //增加MouseDown事件
             MouseDown += OverridMouseDown;
-            base.Padding = new Point(100, 3);
         }
 
         // 用于实际设置的TabControlMode

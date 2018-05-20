@@ -77,17 +77,16 @@ namespace MultiText
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.richTextBox = new System.Windows.Forms.RichTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tabControlWithCloseButton1 = new MultiText.container.TabControlWithCloseButton();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.tabControlWithCloseButton = new MultiText.container.TabControlWithCloseButton();
+            this.tabPageTemplate = new System.Windows.Forms.TabPage();
+            this.richTextBoxTemplate = new System.Windows.Forms.RichTextBox();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.menuStrip.SuspendLayout();
             this.toolStrip.SuspendLayout();
             this.tabPage1.SuspendLayout();
-            this.tabControlWithCloseButton1.SuspendLayout();
-            this.tabPage3.SuspendLayout();
-            this.tabPage4.SuspendLayout();
+            this.tabControlWithCloseButton.SuspendLayout();
+            this.tabPageTemplate.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip
@@ -534,69 +533,69 @@ namespace MultiText
             this.tabPage2.Text = "新建文件2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // tabControlWithCloseButton1
-            // 
-            this.tabControlWithCloseButton1.CloseButtonPadding = new System.Drawing.Point(0, 0);
-            this.tabControlWithCloseButton1.Controls.Add(this.tabPage3);
-            this.tabControlWithCloseButton1.Controls.Add(this.tabPage4);
-            this.tabControlWithCloseButton1.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
-            this.tabControlWithCloseButton1.ImagePadding = new System.Drawing.Point(0, 0);
-            this.tabControlWithCloseButton1.ItemSize = new System.Drawing.Size(150, 24);
-            this.tabControlWithCloseButton1.Location = new System.Drawing.Point(0, 80);
-            this.tabControlWithCloseButton1.Name = "tabControlWithCloseButton1";
-            this.tabControlWithCloseButton1.SelectedIndex = 0;
-            this.tabControlWithCloseButton1.SelectedTabColor = System.Drawing.Color.Empty;
-            this.tabControlWithCloseButton1.Size = new System.Drawing.Size(1176, 625);
-            this.tabControlWithCloseButton1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControlWithCloseButton1.TabImage = null;
-            this.tabControlWithCloseButton1.TabIndex = 2;
-            this.tabControlWithCloseButton1.TextPadding = new System.Drawing.Point(4, 4);
-            // 
             // tabPage3
             // 
-            this.tabPage3.Controls.Add(this.richTextBox1);
-            this.tabPage3.Location = new System.Drawing.Point(4, 28);
+            this.tabPage3.Location = new System.Drawing.Point(4, 24);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1168, 593);
-            this.tabPage3.TabIndex = 0;
-            this.tabPage3.Text = "新建文件1.txt";
+            this.tabPage3.Size = new System.Drawing.Size(1168, 597);
+            this.tabPage3.TabIndex = 1;
+            this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
-            // richTextBox1
+            // tabControlWithCloseButton
             // 
-            this.richTextBox1.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(1168, 591);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            this.richTextBox1.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
+            this.tabControlWithCloseButton.CloseButtonPadding = new System.Drawing.Point(0, 0);
+            this.tabControlWithCloseButton.Controls.Add(this.tabPageTemplate);
+            this.tabControlWithCloseButton.DrawMode = System.Windows.Forms.TabDrawMode.OwnerDrawFixed;
+            this.tabControlWithCloseButton.ImagePadding = new System.Drawing.Point(0, 0);
+            this.tabControlWithCloseButton.ItemSize = new System.Drawing.Size(150, 20);
+            this.tabControlWithCloseButton.Location = new System.Drawing.Point(0, 80);
+            this.tabControlWithCloseButton.Name = "tabControlWithCloseButton";
+            this.tabControlWithCloseButton.SelectedIndex = 0;
+            this.tabControlWithCloseButton.SelectedTabColor = System.Drawing.Color.Silver;
+            this.tabControlWithCloseButton.Size = new System.Drawing.Size(1176, 625);
+            this.tabControlWithCloseButton.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControlWithCloseButton.TabImage = null;
+            this.tabControlWithCloseButton.TabIndex = 2;
+            this.tabControlWithCloseButton.TextPadding = new System.Drawing.Point(8, 4);
+            // 
+            // tabPageTemplate
+            // 
+            this.tabPageTemplate.Controls.Add(this.richTextBoxTemplate);
+            this.tabPageTemplate.Location = new System.Drawing.Point(4, 24);
+            this.tabPageTemplate.Name = "tabPageTemplate";
+            this.tabPageTemplate.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageTemplate.Size = new System.Drawing.Size(1168, 597);
+            this.tabPageTemplate.TabIndex = 0;
+            this.tabPageTemplate.Text = "tabPageTemplate";
+            this.tabPageTemplate.UseVisualStyleBackColor = true;
+            // 
+            // richTextBoxTemplate
+            // 
+            this.richTextBoxTemplate.Location = new System.Drawing.Point(0, 0);
+            this.richTextBoxTemplate.Name = "richTextBoxTemplate";
+            this.richTextBoxTemplate.Size = new System.Drawing.Size(1168, 591);
+            this.richTextBoxTemplate.TabIndex = 0;
+            this.richTextBoxTemplate.Text = "";
+            this.richTextBoxTemplate.TextChanged += new System.EventHandler(this.richTextBox1_TextChanged);
             // 
             // tabPage4
             // 
-            this.tabPage4.Controls.Add(this.richTextBox2);
-            this.tabPage4.Location = new System.Drawing.Point(4, 28);
+            this.tabPage4.Location = new System.Drawing.Point(4, 24);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1168, 593);
+            this.tabPage4.Size = new System.Drawing.Size(1168, 597);
             this.tabPage4.TabIndex = 1;
-            this.tabPage4.Text = "新建文件2.txt";
+            this.tabPage4.Text = "tabPage4";
             this.tabPage4.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(0, 0);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(1168, 589);
-            this.richTextBox2.TabIndex = 0;
-            this.richTextBox2.Text = "";
             // 
             // DocumentProcessor
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1176, 692);
-            this.Controls.Add(this.tabControlWithCloseButton1);
+            this.Controls.Add(this.tabControlWithCloseButton);
             this.Controls.Add(this.toolStrip);
             this.Controls.Add(this.menuStrip);
             this.MainMenuStrip = this.menuStrip;
@@ -609,9 +608,8 @@ namespace MultiText
             this.toolStrip.ResumeLayout(false);
             this.toolStrip.PerformLayout();
             this.tabPage1.ResumeLayout(false);
-            this.tabControlWithCloseButton1.ResumeLayout(false);
-            this.tabPage3.ResumeLayout(false);
-            this.tabPage4.ResumeLayout(false);
+            this.tabControlWithCloseButton.ResumeLayout(false);
+            this.tabPageTemplate.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -666,11 +664,11 @@ namespace MultiText
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RichTextBox richTextBox;
-        private container.TabControlWithCloseButton tabControlWithCloseButton1;
+        private container.TabControlWithCloseButton tabControlWithCloseButton;
+        private System.Windows.Forms.TabPage tabPageTemplate;
+        private System.Windows.Forms.RichTextBox richTextBoxTemplate;
         private System.Windows.Forms.TabPage tabPage3;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.TabPage tabPage4;
-        private System.Windows.Forms.RichTextBox richTextBox2;
     }
 }
 

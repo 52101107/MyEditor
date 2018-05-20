@@ -12,21 +12,20 @@ namespace MultiText
         private const int tabControlWithCloseButtonY = 70;  // tabControlWithCloseButton的Y坐标
         private const int tabPageLocationY = 70;            // tabControlWithCloseButton的Y坐标
         private const int tagItemHeight = 20;               // 选项卡Item高度
-        private const int tagMargin = 3;                    // 选项卡空白
-
-        #endregion
-
-        #region
-
-        
-
+        private int count = 0;
         #endregion
 
         public DocumentProcessor()
         {
             InitializeComponent();
-
-            int formTitleHeight = this.Height - ClientRectangle.Height + 1;         // 窗体标题栏高度
+            this.tabControlWithCloseButton.TabPages.Remove(tabPageTemplate);
+            // 获取标题栏高度
+            int formTitleHeight = Height - ClientRectangle.Height + 1;
+            // 调整tabControl的大小
+            tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin,
+                this.Height - tabControlWithCloseButton.Location.Y - 
+                tabControlWithCloseButton.ItemSize.Height - formMargin);
+            richTextBoxTemplate.Size = tabPageTemplate.Size;        // 窗体标题栏高度
         }
 
         private void toolStripSeparator5_Click(object sender, EventArgs e)
@@ -46,53 +45,76 @@ namespace MultiText
 
         private void DocumentProcessor_KeyDown(object sender, KeyEventArgs e)
         {
-            // Ctrl+*快捷键
 
         }
 
-        // 新建文件
+        // 新建文件菜单按钮
         private void newMenuItem_Click(object sender, EventArgs e)
         {
+            TabPage newTabPage = new TabPage();
+            RichTextBox newRichTextBox = new RichTextBox();
 
+            // newTabPage
+            tabControlWithCloseButton.Controls.Add(newTabPage);
+            // 
+            // tabPageTemplate
+            // 
+            newTabPage.Controls.Add(newRichTextBox);
+            newTabPage.Location = tabPageTemplate.Location;
+            newTabPage.Name = "tabPage" + count;
+            newTabPage.Padding = tabPageTemplate.Padding;
+            newTabPage.Size = tabPageTemplate.Size;
+            newTabPage.TabIndex = count;
+            newTabPage.Text = "新建文件.txt";
+            newTabPage.UseVisualStyleBackColor = tabPageTemplate.UseVisualStyleBackColor;
+            // 
+            // newRichTextBox
+            // 
+            newRichTextBox.Location = richTextBoxTemplate.Location;
+            newRichTextBox.Name = "newRichTextBox" + count;
+            newRichTextBox.Size = richTextBoxTemplate.Size;
+            newRichTextBox.TabIndex = count;
+
+            count++;
         }
 
-        // 打开文件
+        // 打开文件菜单按钮
         private void openMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 保存文件
+        // 保存文件菜单按钮
         private void saveMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 保存文件为
+        // 保存文件为菜单按钮
         private void saveAsMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 历史记录
+        // 历史记录菜单按钮
         private void historyMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 保存到数据库
+        // 保存到数据库菜单按钮
         private void saveToDBMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 页面设置
+        // 页面设置菜单按钮
         private void pageSettingMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 打印
+        // 打印菜单按钮
         private void printMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -103,91 +125,91 @@ namespace MultiText
 
         }
 
-        // 退出
+        // 退出菜单按钮
         private void undoMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 剪接
+        // 剪接菜单按钮
         private void cutMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 复制
+        // 复制菜单按钮
         private void copyMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 粘贴
+        // 粘贴菜单按钮
         private void pasteMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 删除
+        // 删除菜单按钮
         private void deleteMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 查找
+        // 查找菜单按钮
         private void searchMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 替换
+        // 替换菜单按钮
         private void replaceMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 全选
+        // 全选菜单按钮
         private void allMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 时间/日期
+        // 时间/日期菜单按钮
         private void dateMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 自动换行
+        // 自动换行菜单按钮
         private void linewrapMenuItem_Click(object sender, EventArgs e)
         {
 
         }
-        
-        // 字体大小
+
+        // 字体大小菜单按钮
         private void fontsizeMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 字体颜色
+        // 字体颜色菜单按钮
         private void fontcolorMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 状态栏
+        // 状态栏菜单按钮
         private void statusMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 查看帮助
+        // 查看帮助菜单按钮
         private void lookhelpMenuItem_Click(object sender, EventArgs e)
         {
 
         }
 
-        // 关于
+        // 关于菜单按钮
         private void aboutMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -196,7 +218,7 @@ namespace MultiText
         // 新建文件快捷键按钮
         private void newButton_Click(object sender, EventArgs e)
         {
-
+            newMenuItem_Click(sender, e);
         }
 
         // 打开文件快捷键按钮
@@ -352,10 +374,12 @@ namespace MultiText
 
         private void DocumentProcessor_SizeChanged(object sender, EventArgs e)
         {
+            // 获取标题栏高度
             int formTitleHeight = Height - ClientRectangle.Height + 1;
-            tabPage3.Size = new Size(this.Height - tabControlWithCloseButton1.Location.Y
-                - tabControlWithCloseButton1.ItemSize.Height, this.Width - 2 * formMargin);
-            richTextBox1.Size = tabPage3.Size;
+            // 调整tabControl的大小
+            tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin, 
+                this.Height - tabControlWithCloseButton.Location.Y - tabControlWithCloseButton.ItemSize.Height - formMargin);
+            richTextBoxTemplate.Size = tabPageTemplate.Size;
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

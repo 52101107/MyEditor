@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -7,7 +8,9 @@ namespace MultiText
     public partial class DocumentProcessor : Form
     {
         #region Component Size Variable
-
+        //
+        // formMargin是从窗体试验出来的一个值的一半（我想象成窗体有一个厚度）。
+        // 没有具体含义，我也不知道什么意思
         private const int formMargin = 8;                   // 窗体空白
         private const int tabControlWithCloseButtonY = 70;  // tabControlWithCloseButton的Y坐标
         private const int tabPageLocationY = 70;            // tabControlWithCloseButton的Y坐标
@@ -15,6 +18,11 @@ namespace MultiText
         private int count = 0;
         #endregion
 
+        #region Private Variable
+
+
+
+        #endregion
         public DocumentProcessor()
         {
             InitializeComponent();
@@ -23,9 +31,11 @@ namespace MultiText
             int formTitleHeight = Height - ClientRectangle.Height + 1;
             // 调整tabControl的大小
             tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin,
-                this.Height - tabControlWithCloseButton.Location.Y - 
+                this.Height - tabControlWithCloseButton.Location.Y -
                 tabControlWithCloseButton.ItemSize.Height - formMargin);
             richTextBoxTemplate.Size = tabPageTemplate.Size;        // 窗体标题栏高度
+                                                                    //tabControlWithCloseButton.Controls.Add(tabPageTemplate);
+
         }
 
         private void toolStripSeparator5_Click(object sender, EventArgs e)
@@ -75,13 +85,14 @@ namespace MultiText
             newRichTextBox.Size = richTextBoxTemplate.Size;
             newRichTextBox.TabIndex = count;
 
+
             count++;
         }
 
         // 打开文件菜单按钮
         private void openMenuItem_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         // 保存文件菜单按钮
@@ -226,7 +237,7 @@ namespace MultiText
         {
 
         }
-        
+
         // 保存文件快捷键按钮
         private void saveButton_Click(object sender, EventArgs e)
         {
@@ -372,14 +383,25 @@ namespace MultiText
             }
         }
 
+        // 文档修改
         private void DocumentProcessor_SizeChanged(object sender, EventArgs e)
         {
             // 获取标题栏高度
             int formTitleHeight = Height - ClientRectangle.Height + 1;
             // 调整tabControl的大小
-            tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin, 
-                this.Height - tabControlWithCloseButton.Location.Y - tabControlWithCloseButton.ItemSize.Height - formMargin);
-            richTextBoxTemplate.Size = tabPageTemplate.Size;
+            // formMargin是从窗体试验出来的一个值的一半（我想象成窗体有一个厚度）。
+            // 没有具体含义，我也不知道什么意思
+            tabControlWithCloseButton.Size = new Size(this.Width - 2 * formMargin,
+                this.Height - tabControlWithCloseButton.Location.Y -
+                tabControlWithCloseButton.ItemSize.Height - 2 * formMargin);
+            // 修改模板Size，是为了方便新增RichTextBox
+            richTextBoxTemplate.Size = tabControlWithCloseButton.Size;
+
+            // 调整每一个文本编辑器大小
+            foreach (TabPage tabPage in tabControlWithCloseButton.TabPages)
+            {
+                ((RichTextBox)tabPage.Controls[0]).Size = tabControlWithCloseButton.Size;
+            }
         }
 
         private void richTextBox1_TextChanged(object sender, EventArgs e)

@@ -163,7 +163,7 @@ namespace test
                 case TabControlMode.Close:
                     #region Normal,Close
                     //绘制文字
-                    e.Graphics.DrawString(this.TabPages[e.Index].Text, this.Font, new SolidBrush(this.TabPages[e.Index].ForeColor), rec.X + 10, rec.Y + base.Padding.Y);
+                    e.Graphics.DrawString(this.TabPages[e.Index].Text, this.Font, new SolidBrush(this.TabPages[e.Index].ForeColor), rec.X, rec.Y + base.Padding.Y);
                     //计算close的Rectangle
                     newRec.Width = newRec.Height = newRecWidth;
                     newRec.X = rec.X + rec.Width - newRec.Width - 2;

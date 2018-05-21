@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Text;
 using System.Windows.Forms;
@@ -13,15 +14,14 @@ namespace MultiText
         // formMargin是从窗体试验出来的一个值的一半（我想象成窗体有一个厚度）。
         // 没有具体含义，我也不知道什么意思
         private const int formMargin = 8;                   // 窗体空白
-        private const int tabControlWithCloseButtonY = 70;  // tabControlWithCloseButton的Y坐标
-        private const int tabPageLocationY = 70;            // tabControlWithCloseButton的Y坐标
-        private const int tagItemHeight = 20;               // 选项卡Item高度
-        private int count = 0;
+
         #endregion
 
         #region Private Variable
 
+        private int count = 0;
 
+        private PageSettings pageSettings = new PageSettings();
 
         #endregion
         public DocumentProcessor()
@@ -95,6 +95,7 @@ namespace MultiText
                 TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
                 RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
                 curTabPage.Text = Path.GetFileName(openFileDialog.FileName);
+                curRichTextBox.Name = openFileDialog.FileName;
                 curRichTextBox.Text = File.ReadAllText(openFileDialog.FileName, Encoding.Default);
             }
         }
@@ -124,7 +125,7 @@ namespace MultiText
                     else
                     {
                         // 保存文件
-
+                        curRichTextBox.SaveFile(curRichTextBox.Name, RichTextBoxStreamType.PlainText);
                     }
                 }
             }
@@ -168,12 +169,40 @@ namespace MultiText
         // 页面设置菜单按钮
         private void pageSettingMenuItem_Click(object sender, EventArgs e)
         {
-
+            PageSetupDialog pageSetupDialog = new PageSetupDialog();
+            pageSetupDialog.PageSettings = pageSettings;
+            if (pageSetupDialog.ShowDialog() == DialogResult.OK)
+            {
+                pageSettings = pageSetupDialog.PageSettings;
+            }
         }
 
         // 打印菜单按钮
         private void printMenuItem_Click(object sender, EventArgs e)
         {
+            // 打印文档及页面设置
+            PrintDocument printDocument = new PrintDocument();
+            PageSetupDialog pageSetupDialog = new PageSetupDialog();
+            pageSetupDialog.PageSettings = pageSettings;
+            pageSetupDialog.Document = printDocument;
+
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                
+            }
+
+            if (pageSetupDialog.ShowDialog() == DialogResult.OK)
+            {
+                PrintPreviewDialog printPreviewDialog = new PrintPreviewDialog();
+                printPreviewDialog.Document = printDocument;
+                if (printPreviewDialog.ShowDialog() == DialogResult.OK)
+                {
+                    
+                }
+            }
 
         }
 
@@ -270,13 +299,37 @@ namespace MultiText
         // 字体大小菜单按钮
         private void fontsizeMenuItem_Click(object sender, EventArgs e)
         {
+            FontDialog fontDialog = new FontDialog();
+            if (fontDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 获取当前选项卡
+                TabPage curTabPage = this.tabControlWithCloseButton.SelectedTab;
+                if (curTabPage != null)
+                {
+                    RichTextBox curRichTextBox = (RichTextBox)curTabPage.Controls[0];
 
+                    // 修改字体
+                    curRichTextBox.Font = fontDialog.Font;
+                }
+            }
         }
 
         // 字体颜色菜单按钮
         private void fontcolorMenuItem_Click(object sender, EventArgs e)
         {
+            ColorDialog colorDialog = new ColorDialog();
+            if (colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                // 获取当前选项卡
+                TabPage curTabPage = this.tabControlWithCloseButton.SelectedTab;
+                if (curTabPage != null)
+                {
+                    RichTextBox curRichTextBox = (RichTextBox)curTabPage.Controls[0];
 
+                    // 修改字体颜色
+                    curRichTextBox.ForeColor = colorDialog.Color;
+                }
+            }
         }
 
         // 状态栏菜单按钮
@@ -357,62 +410,61 @@ namespace MultiText
             // 打印
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.P)
             {
-
+                printMenuItem_Click(sender, e);
             }
 
             // 撤销
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.Z)
             {
-
+                undoMenuItem_Click(sender, e);
             }
 
             // 剪接
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.X)
             {
-
+                cutMenuItem_Click(sender, e);
             }
 
             // 复制
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.C)
             {
-
+                copyMenuItem_Click(sender, e);
             }
 
             // 粘贴
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.V)
             {
-
+                pasteMenuItem_Click(sender, e);
             }
 
             // 删除
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.Delete)
             {
-
+                deleteMenuItem_Click(sender, e);
             }
 
             // 查找
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.F)
             {
-
+                searchMenuItem_Click(sender, e);
             }
 
             // 替换
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.H)
             {
-
+                replaceMenuItem_Click(sender, e);
             }
 
             // 全选
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.A)
             {
-
+                allMenuItem_Click(sender, e);
             }
 
             // 时间/日期
             if (ModifierKeys == Keys.Control && e.KeyCode == Keys.F5)
             {
-
-
+                dateMenuItem_Click(sender, e);
             }
         }
 

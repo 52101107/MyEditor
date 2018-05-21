@@ -219,8 +219,11 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-            curRichTextBox.Undo();
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curRichTextBox.Undo();
+            }
         }
 
         // 剪接菜单按钮
@@ -228,8 +231,11 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-            curRichTextBox.Cut();
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curRichTextBox.Cut();
+            }
         }
 
         // 复制菜单按钮
@@ -237,8 +243,11 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-            curRichTextBox.Copy();
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curRichTextBox.Copy();
+            }
         }
 
         // 粘贴菜单按钮
@@ -246,8 +255,11 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-            curRichTextBox.Paste();
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curRichTextBox.Paste();
+            }
         }
 
         // 删除菜单按钮
@@ -255,10 +267,13 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-            if (curRichTextBox.SelectedText.Length > 0)
+            if (curTabPage != null)
             {
-                curRichTextBox.SelectedText = "";
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                if (curRichTextBox.SelectedText.Length > 0)
+                {
+                    curRichTextBox.SelectedText = "";
+                }
             }
         }
 

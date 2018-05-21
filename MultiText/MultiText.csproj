@@ -68,7 +68,6 @@
     <Compile Include="ui\SearchAndReplaceForm.Designer.cs">
       <DependentUpon>SearchAndReplaceForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="util\Util.cs" />
     <EmbeddedResource Include="ui\About.resx">
       <DependentUpon>About.cs</DependentUpon>
     </EmbeddedResource>

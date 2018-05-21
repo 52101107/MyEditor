@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MultiText.ui;
+using System;
 using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
@@ -20,6 +21,7 @@ namespace MultiText
         #region Private Variable
 
         private int count = 0;
+        private int searchPosition;
 
         private PageSettings pageSettings = new PageSettings();
 
@@ -191,7 +193,7 @@ namespace MultiText
             if (curTabPage != null)
             {
                 RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-                
+
             }
 
             if (pageSetupDialog.ShowDialog() == DialogResult.OK)
@@ -200,7 +202,7 @@ namespace MultiText
                 printPreviewDialog.Document = printDocument;
                 if (printPreviewDialog.ShowDialog() == DialogResult.OK)
                 {
-                    
+
                 }
             }
 
@@ -263,7 +265,9 @@ namespace MultiText
         // 查找菜单按钮
         private void searchMenuItem_Click(object sender, EventArgs e)
         {
-
+            searchPosition = 0;
+            SearchAndReplaceForm searchAndReplaceForm = new SearchAndReplaceForm(this);
+            searchAndReplaceForm.Show();
         }
 
         // 替换菜单按钮
@@ -277,14 +281,23 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
-            curRichTextBox.SelectAll();
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curRichTextBox.SelectAll();
+            }
         }
 
         // 时间/日期菜单按钮
         private void dateMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 获取当前选项卡
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                curRichTextBox.SelectedText = DateTime.Now.ToString();
+            }
         }
 
         // 自动换行菜单按钮
@@ -335,19 +348,24 @@ namespace MultiText
         // 状态栏菜单按钮
         private void statusMenuItem_Click(object sender, EventArgs e)
         {
-
+            //
+            // 暂不实现
+            // 
         }
 
         // 查看帮助菜单按钮
         private void lookhelpMenuItem_Click(object sender, EventArgs e)
         {
-
+            // 
+            // 没有帮助网址，暂不实现
+            // 
         }
 
         // 关于菜单按钮
         private void aboutMenuItem_Click(object sender, EventArgs e)
         {
-
+            About about = new About();
+            about.ShowDialog();
         }
 
         // 新建文件快捷键按钮
@@ -490,6 +508,50 @@ namespace MultiText
             foreach (TabPage tabPage in tabControlWithCloseButton.TabPages)
             {
                 ((RichTextBox)tabPage.Controls[0]).Size = richTextBoxTemplate.Size;
+            }
+        }
+        /// <summary>
+        /// 查找文本具体实现。
+        /// </summary>
+        /// <param name="text"></param>
+        public void Search(string text)
+        {
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                searchPosition = curRichTextBox.Find(text, searchPosition, RichTextBoxFinds.MatchCase);
+
+                // 处理查找结果
+                // 未查找到匹配字符串
+                if (searchPosition == -1)
+                {
+                    MessageBox.Show("未找到匹配字符串,再次查找将从文本开始处查找",
+                        "提示", MessageBoxButtons.OK);
+                    searchPosition = 0;
+                }
+                else
+                {
+                    curRichTextBox.Focus();
+                    searchPosition += text.Length;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 替换字符串具体实现
+        /// </summary>
+        /// <param name="text"></param>
+        public void Replace(string text)
+        {
+            TabPage curTabPage = tabControlWithCloseButton.SelectedTab;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = ((RichTextBox)curTabPage.Controls[0]);
+                if (curRichTextBox.SelectedText.Length > 0)
+                {
+                    curRichTextBox.SelectedText = text;
+                }
             }
         }
     }

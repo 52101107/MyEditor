@@ -48,6 +48,12 @@
     <Compile Include="container\TabControlWithCloseButton.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ui\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="ui\DocProcessor.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,7 +62,16 @@
     </Compile>
     <Compile Include="Boot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ui\SearchAndReplaceForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ui\SearchAndReplaceForm.Designer.cs">
+      <DependentUpon>SearchAndReplaceForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="util\Util.cs" />
+    <EmbeddedResource Include="ui\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ui\DocProcessor.resx">
       <DependentUpon>DocProcessor.cs</DependentUpon>
     </EmbeddedResource>
@@ -70,6 +85,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="ui\SearchAndReplaceForm.resx">
+      <DependentUpon>SearchAndReplaceForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -155,6 +173,8 @@
   <ItemGroup>
     <None Include="image\undo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Resources\DVA004.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

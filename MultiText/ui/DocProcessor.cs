@@ -305,8 +305,11 @@ namespace MultiText
         {
             // 获取当前选项卡
             TabPage curTabPage = this.tabControlWithCloseButton.SelectedTab;
-            RichTextBox curRichTextBox = (RichTextBox)curTabPage.Controls[0];
-            curRichTextBox.WordWrap = !curRichTextBox.WordWrap;
+            if (curTabPage != null)
+            {
+                RichTextBox curRichTextBox = (RichTextBox)curTabPage.Controls[0];
+                curRichTextBox.WordWrap = !curRichTextBox.WordWrap;
+            }
         }
 
         // 字体大小菜单按钮

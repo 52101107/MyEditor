@@ -1,5 +1,5 @@
 # MyEditor
-һ����ʵ�飬��ѽѽ
+一个实验，哎呀呀
 
 
-�������ʵ��������˼���ǣ���д�˸�TabControl�����Ƿ�ʱ�䰡��
+不过这个实验最有意思的是，重写了个TabControl，真是费时间啊。
